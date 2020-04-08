@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% load static %} {% block content%}
+
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+
+<link
+  href="https://fonts.googleapis.com/css?family=Bitter&display=swap"
+  rel="stylesheet"
+/>
+<section class="title">
+  <h1>{{post.title}}</h1>
+  <h2>Director : {{post.director}}</h2>
+  <h3>Rating :{{post.rating}}/5</h3>
+  <br /><br />
+
+  <span class="content">
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          {% if post.img %}
+          <img src="{{post.img.url}}" class="content_img" alt="error" />
+          {% endif %}
+        </div>
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Review</h5>
+            <br /><br />
+            <p class="card-text">
+              "{{post.contents}}"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</section>
+<br />
+<br />
+
+<h2>Comments</h2>
+<div class="comment">
+  <br /><br />
+  {% for com in post.comments.all %}
+  <li>
+    {{com.content}}
+    <a href="{% url 'delete_comment' post.pk com.pk %}">
+      <button>delete</button>
+    </a>
+  </li>
+  {% endfor %}
+  <br /><br />
+  <form method="POST">
+    {% csrf_token %} {{form.as_p}}
+    <button type="submit">submit</button>
+  </form>
+</div>
+
+<br />
+
+<a href="{% url 'home' %}">
+  <button>Back to Main Page</button>
+</a>
+
+<a href="{% url 'edit' post.pk %}">
+  <button>Edit</button>
+</a>
+
+<a href="{% url 'delete' post.pk %}">
+  <button>Delete</button>
+</a>
+
+{% endblock %}

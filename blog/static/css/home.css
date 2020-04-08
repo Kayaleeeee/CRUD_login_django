@@ -1,0 +1,53 @@
+.upper h2 {
+  font-size: 3rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  font-family: "Bitter", serif;
+  text-align: center;
+}
+
+.upper h1 {
+  padding-left: 1rem;
+  font-size: 3rem;
+  font-family: "Bitter", serif;
+  background-color: #fcc888;
+}
+
+.upper img {
+  width: 100%;
+}
+
+.middle {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  height: 700px;
+  grid-template-rows: repeat(1, 300px);
+  row-gap: 2rem;
+  column-gap: 2rem;
+  justify-content: center;
+  padding: 4rem 10rem 1rem 10rem;
+}
+.post {
+  text-align: center;
+  height: 500px;
+  border: black 1px solid;
+  padding: 1rem;
+}
+
+.post h4 {
+  font-size: 2rem;
+  font-family: "Bitter", serif;
+}
+
+.post img {
+  width: 15rem;
+}
+
+a {
+  color: blacks;
+}
+
+.bottom a {
+  padding: 2rem;
+  justify-content: center;
+}

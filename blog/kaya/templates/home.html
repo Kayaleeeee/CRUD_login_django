@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load static %}{% block content%}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+<link
+  href="https://fonts.googleapis.com/css?family=Bitter&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
+
+<div class="upper">
+  <h1>Rating Movies</h1>
+  <img src="{% static 'img/B.jpg' %}" alt="" />
+  <h2>Post List</h2>
+</div>
+
+<section class="middle">
+  {%for post in posts%}
+
+  <div class="post">
+    <a href="{% url 'detail' post.pk %}">
+      <h4>{{post.title}}</h4>
+      {% if post.img %}
+      <img src="{{post.img.url}}" alt="error" />
+      {% endif %}
+    </a>
+  </div>
+
+  {% endfor %}
+</section>
+
+<div class="bottom">
+  <a href="{% url 'new' %}"><h2>Create New Post</h2></a>
+</div>
+
+{% endblock %}
