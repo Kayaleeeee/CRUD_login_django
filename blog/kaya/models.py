@@ -4,6 +4,7 @@ from django.utils import timezone
 
 
 class Post(models.Model):
+    author = models.CharField(max_length=50, default='')
     title = models.CharField(max_length=200)
     director = models.CharField(max_length=100)
     contents = models.TextField()
@@ -21,3 +22,4 @@ class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
+    author = models.CharField(max_length=50, default='')

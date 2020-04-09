@@ -16,6 +16,7 @@
   <h1>{{post.title}}</h1>
   <h2>Director : {{post.director}}</h2>
   <h3>Rating :{{post.rating}}/5</h3>
+  <h3>Writer : {{post.author}}</h3>
   <br /><br />
 
   <span class="content">
@@ -48,12 +49,14 @@
   <br /><br />
   {% for com in post.comments.all %}
   <li>
-    {{com.content}}
-    <a href="{% url 'delete_comment' post.pk com.pk %}">
-      <button>delete</button>
-    </a>
+    {{com.author}} : {{com.content}}
   </li>
-  {% endfor %}
+  {% if user.is_authenticated and com.author == user.username %}
+
+  <a href="{% url 'delete_comment' post.pk com.pk %}">
+    <button>delete</button>
+  </a>
+  {% endif %} {% endfor %}
   <br /><br />
   <form method="POST">
     {% csrf_token %} {{form.as_p}}
@@ -66,7 +69,7 @@
 <a href="{% url 'home' %}">
   <button>Back to Main Page</button>
 </a>
-
+{% if user.is_authenticated and post.author == user.username %}
 <a href="{% url 'edit' post.pk %}">
   <button>Edit</button>
 </a>
@@ -74,5 +77,4 @@
 <a href="{% url 'delete' post.pk %}">
   <button>Delete</button>
 </a>
-
-{% endblock %}
+{% endif %} {% endblock %}
